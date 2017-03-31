@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnShowInfo;
     Button btnDeleteAll;
 
+    Button btnSearchByName;
+
     TextView txtEmpId;
     TextView txtEmpName;
     TextView txtContactNumber;
@@ -47,6 +49,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnShowInfo = (Button) findViewById(R.id.btnShowInfo);
         btnDeleteAll = (Button) findViewById(R.id.btnDeleteAll);
 
+        btnSearchByName = (Button) findViewById(R.id.btnSearchByName);
+
         txtEmpId = (TextView)findViewById(R.id.txtEmpId);
         txtEmpName = (TextView)findViewById(R.id.txtEmpName);
         txtContactNumber = (TextView)findViewById(R.id.txtContactNumber);
@@ -58,6 +62,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnViewAll.setOnClickListener(this);
         btnShowInfo.setOnClickListener(this);
         btnDeleteAll.setOnClickListener(this);
+
+        btnSearchByName.setOnClickListener(this);
 
         createDatabase();
 
@@ -71,7 +77,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void onClick(View view)
     {
-
         //Add
         if(view==btnAdd)
         {
@@ -80,8 +85,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             edtEmployeeName.setVisibility(View.VISIBLE);
             edtContactNumber.setVisibility(View.VISIBLE);
 
-            //txtEmpId.setVisibility(View.INVISIBLE);
-            //edtEmployeeId.setVisibility(View.INVISIBLE);
+            txtEmpId.setVisibility(View.VISIBLE);
+            edtEmployeeId.setVisibility(View.VISIBLE);
 
             if((edtEmployeeId.getText().toString().trim().length()==0)||
 
@@ -110,11 +115,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     clearText();
                     return;
                 }
-
-                /*db.execSQL("INSERT INTO employees VALUES('"+edtEmployeeId.getText()+"','"+edtEmployeeName.getText()+
-                        "','"+edtContactNumber.getText()+"');");
-                showMessage("Success", "Record added");
-                clearText();*/
             }
         }
 
@@ -122,6 +122,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //Delete
         if(view==btnDelete)
         {
+            txtEmpId.setVisibility(View.VISIBLE);
+            edtEmployeeId.setVisibility(View.VISIBLE);
             txtEmpName.setVisibility(View.INVISIBLE);
             txtContactNumber.setVisibility(View.INVISIBLE);
             edtEmployeeName.setVisibility(View.INVISIBLE);
@@ -141,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             else
             {
                 showMessage("Error", "Invalid EmployeeId");
-                
+
             }
             clearText();
         }
@@ -149,7 +151,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //update
         if(view==btnUpdate)
         {
-
+            txtEmpId.setVisibility(View.VISIBLE);
+            edtEmployeeId.setVisibility(View.VISIBLE);
             txtEmpName.setVisibility(View.VISIBLE);
             txtContactNumber.setVisibility(View.VISIBLE);
             edtEmployeeName.setVisibility(View.VISIBLE);
@@ -160,23 +163,83 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 showMessage("Error", "Please enter Employee Id");
                 return;
             }
-            Cursor c=db.rawQuery("SELECT * FROM employees WHERE edtEmployeeId='"+edtEmployeeId.getText()+"'", null);
-            if(c.moveToFirst())
-            {
-                db.execSQL("UPDATE employees SET edtEmployeeName='"+edtEmployeeName.getText()+"',edtContactNumber='"+edtContactNumber.getText()+
-                        "' WHERE edtEmployeeId='"+edtEmployeeId.getText()+"'");
-                showMessage("Success", "Record updated");
-            }
             else
             {
-                showMessage("Error", "Invalid Employee Id");
+                if(edtEmployeeId.getText().toString().trim().length()!=0 &&
+                        edtEmployeeName.getText().toString().trim().length()==0 &&
+                        edtContactNumber.getText().toString().trim().length()==0)
+                {
+                    showMessage("Plz", "Fill any field");
+                    return;
+                }
+                if(edtEmployeeId.getText().toString().trim().length()!=0 &&
+                        edtEmployeeName.getText().toString().trim().length()==0 &&
+                        edtContactNumber.getText().toString().trim().length()!=0)
+                {
+                    Cursor c=db.rawQuery("SELECT * FROM employees WHERE edtEmployeeId='"+edtEmployeeId.getText()+"'", null);
+                        if(c.moveToFirst())
+                        {
+                            db.execSQL("UPDATE employees SET edtContactNumber='"+edtContactNumber.getText()+
+                                    "' WHERE edtEmployeeId='"+edtEmployeeId.getText()+"'");
+                            showMessage("Success", "contact number updated");
+                            return;
+                        }
+                        else
+                        {
+                            {
+                                showMessage("Error", "Invalid Employee Id");
+                                clearText();
+                                return;
+                            }
+                        }
+
+                }
+                if(edtEmployeeId.getText().toString().trim().length()!=0 &&
+                        edtEmployeeName.getText().toString().trim().length()!=0 &&
+                        edtContactNumber.getText().toString().trim().length()==0)
+                {
+                    Cursor c=db.rawQuery("SELECT * FROM employees WHERE edtEmployeeId='"+edtEmployeeId.getText()+"'", null);
+                    if(c.moveToFirst())
+                    {
+                        if(c.moveToFirst())
+                        {
+                            db.execSQL("UPDATE employees SET edtEmployeeName='"+edtEmployeeName.getText()+
+                                    "' WHERE edtEmployeeId='"+edtEmployeeId.getText()+"'");
+                            showMessage("Success", "employee name updated");
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        {
+                            showMessage("Error", "Invalid Employee Id");
+                            clearText();
+                            return;
+                        }
+                    }
+                }
+                Cursor c=db.rawQuery("SELECT * FROM employees WHERE edtEmployeeId='"+edtEmployeeId.getText()+"'", null);
+                if(c.moveToFirst())
+                {
+                    db.execSQL("UPDATE employees SET edtEmployeeName='"+edtEmployeeName.getText()+"',edtContactNumber='"+edtContactNumber.getText()+
+                            "' WHERE edtEmployeeId='"+edtEmployeeId.getText()+"'");
+                    showMessage("Success", " Full Record updated");
+                    return;
+                }
+                else
+                {
+                    showMessage("Error", "Invalid Employee Id");
+                }
+                clearText();
+                return;
             }
-            clearText();
         }
 
         //View
         if(view==btnView)
         {
+            txtEmpId.setVisibility(View.VISIBLE);
+            edtEmployeeId.setVisibility(View.VISIBLE);
             txtEmpName.setVisibility(View.INVISIBLE);
             txtContactNumber.setVisibility(View.INVISIBLE);
             edtEmployeeName.setVisibility(View.INVISIBLE);
@@ -251,6 +314,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             showMessage("Employee Application", "Developed By @Anupam");
         }
 
+        //Search By Name
+        if(view == btnSearchByName)
+        {
+            txtEmpName.setVisibility(View.VISIBLE);
+            edtEmployeeName.setVisibility(View.VISIBLE);
+            txtEmpId.setVisibility(View.INVISIBLE);
+            edtEmployeeId.setVisibility(View.INVISIBLE);
+            txtContactNumber.setVisibility(View.INVISIBLE);
+            edtContactNumber.setVisibility(View.INVISIBLE);
+
+            if(edtEmployeeName.getText().toString().trim().length()==0)
+            {
+                showMessage("Message","Enter valid!");
+            }
+            else
+            {
+                Cursor c=db.rawQuery("SELECT * FROM employees WHERE edtEmployeeName LIKE '%"+edtEmployeeName.getText()+"%' ", null);
+                if(c.getCount()==0)
+                {
+                    showMessage("Error", "No records found");
+                    return;
+                }
+                clearText();
+                StringBuffer buffer=new StringBuffer();
+                while(c.moveToNext())
+                {
+                    buffer.append("EmployeeId: "+c.getString(0)+"\n");
+                    buffer.append("EmployeeName: "+c.getString(1)+"\n");
+                    buffer.append("EmployeeContactNumber: "+c.getString(2)+"\n\n");
+                }
+                showMessage("Employee Details", buffer.toString());
+            }
+        }
     }
 
     public void showMessage(String title,String message)

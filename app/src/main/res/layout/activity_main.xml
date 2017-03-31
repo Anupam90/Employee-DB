@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_bright"
+    android:background="?android:attr/colorButtonNormal"
     tools:context="com.example.anupamdeb.employee.MainActivity">
 
     <TextView
@@ -159,4 +159,13 @@
         android:layout_alignRight="@+id/btnShowInfo"
         android:layout_alignStart="@+id/btnView"
         android:text="Delete All" />
+
+    <Button
+        android:id="@+id/btnSearchByName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/btnDelete"
+        android:text="Search by Name" />
 </RelativeLayout>
