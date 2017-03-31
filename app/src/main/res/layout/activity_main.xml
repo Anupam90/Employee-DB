@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_blue_bright"
+    tools:context="com.example.anupamdeb.employee.MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="EmployeeDetails"
+        android:textColor="@android:color/black"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/txtEmpId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView"
+        android:layout_marginLeft="18dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="60dp"
+        android:text="Employee Id"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/txtEmpName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtEmpId"
+        android:layout_alignStart="@+id/txtEmpId"
+        android:layout_below="@+id/txtEmpId"
+        android:layout_marginTop="35dp"
+        android:text="Employee Name"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/txtContactNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtEmpName"
+        android:layout_alignStart="@+id/txtEmpName"
+        android:layout_below="@+id/txtEmpName"
+        android:layout_marginTop="35dp"
+        android:text="Contact Number"
+        android:textColor="@android:color/black" />
+
+    <EditText
+        android:id="@+id/edtEmployeeId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/txtContactNumber"
+        android:layout_marginBottom="39dp"
+        android:layout_marginLeft="39dp"
+        android:layout_marginStart="39dp"
+        android:layout_toEndOf="@+id/txtEmpId"
+        android:layout_toRightOf="@+id/txtEmpId"
+        android:ems="10"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/edtEmployeeName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/txtEmpName"
+        android:layout_alignBottom="@+id/txtEmpName"
+        android:layout_alignLeft="@+id/edtEmployeeId"
+        android:layout_alignStart="@+id/edtEmployeeId"
+        android:ems="10"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/edtEmployeeContactNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/txtContactNumber"
+        android:layout_alignBottom="@+id/txtContactNumber"
+        android:layout_alignLeft="@+id/edtEmployeeName"
+        android:layout_alignStart="@+id/edtEmployeeName"
+        android:ems="10"
+        android:inputType="number|phone" />
+
+    <Button
+        android:id="@+id/btnAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtContactNumber"
+        android:layout_alignStart="@+id/txtContactNumber"
+        android:layout_below="@+id/edtEmployeeContactNumber"
+        android:layout_marginTop="36dp"
+        android:text="Add" />
+
+    <Button
+        android:id="@+id/btnDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnAdd"
+        android:layout_alignBottom="@+id/btnAdd"
+        android:layout_centerHorizontal="true"
+        android:text="Delete" />
+
+    <Button
+        android:id="@+id/btnUpdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btnAdd"
+        android:layout_alignStart="@+id/btnAdd"
+        android:layout_below="@+id/btnAdd"
+        android:layout_marginTop="11dp"
+        android:text="Update" />
+
+    <Button
+        android:id="@+id/btnView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnUpdate"
+        android:layout_alignBottom="@+id/btnUpdate"
+        android:layout_alignLeft="@+id/btnDelete"
+        android:layout_alignStart="@+id/btnDelete"
+        android:text="View" />
+
+    <Button
+        android:id="@+id/btnViewAll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btnUpdate"
+        android:layout_alignStart="@+id/btnUpdate"
+        android:layout_below="@+id/btnUpdate"
+        android:layout_marginTop="17dp"
+        android:text="View All" />
+
+    <Button
+        android:id="@+id/btnShowInfo"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/edtEmployeeContactNumber"
+        android:layout_alignLeft="@+id/btnViewAll"
+        android:layout_alignRight="@+id/edtEmployeeContactNumber"
+        android:layout_alignStart="@+id/btnViewAll"
+        android:layout_below="@+id/btnViewAll"
+        android:layout_marginTop="10dp"
+        android:text="Show Info." />
+
+    <Button
+        android:id="@+id/btnDeleteAll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnViewAll"
+        android:layout_alignBottom="@+id/btnViewAll"
+        android:layout_alignEnd="@+id/btnShowInfo"
+        android:layout_alignLeft="@+id/btnView"
+        android:layout_alignRight="@+id/btnShowInfo"
+        android:layout_alignStart="@+id/btnView"
+        android:text="Delete All" />
+</RelativeLayout>
