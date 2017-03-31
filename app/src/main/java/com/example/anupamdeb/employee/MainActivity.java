@@ -141,6 +141,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             else
             {
                 showMessage("Error", "Invalid EmployeeId");
+                
             }
             clearText();
         }
