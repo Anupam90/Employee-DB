@@ -124,7 +124,9 @@
         android:layout_alignBottom="@+id/btnUpdate"
         android:layout_alignLeft="@+id/btnDelete"
         android:layout_alignStart="@+id/btnDelete"
-        android:text="View" />
+        android:text="View"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:id="@+id/btnViewAll"
@@ -140,13 +142,13 @@
         android:id="@+id/btnShowInfo"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/edtEmployeeContactNumber"
         android:layout_alignLeft="@+id/btnViewAll"
-        android:layout_alignRight="@+id/edtEmployeeContactNumber"
         android:layout_alignStart="@+id/btnViewAll"
         android:layout_below="@+id/btnViewAll"
         android:layout_marginTop="10dp"
-        android:text="Show Info." />
+        android:text="Show Info."
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:id="@+id/btnDeleteAll"
@@ -154,11 +156,11 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/btnViewAll"
         android:layout_alignBottom="@+id/btnViewAll"
-        android:layout_alignEnd="@+id/btnShowInfo"
         android:layout_alignLeft="@+id/btnView"
-        android:layout_alignRight="@+id/btnShowInfo"
         android:layout_alignStart="@+id/btnView"
-        android:text="Delete All" />
+        android:text="Delete All"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:id="@+id/btnSearchByName"
